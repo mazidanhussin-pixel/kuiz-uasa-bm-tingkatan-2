@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuiz Interaktif UASA Bahasa Melayu Tingkatan 2</title>
+<style>
+:root{--ink:#1f2937;--muted:#64748b;--line:#dbe3ec;--panel:#f8fafc;--accent:#175cd3;--good:#067647;--bad:#b42318}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:#f1f5f9}
+header{background:#102a43;color:white;padding:28px 18px}header .wrap,main{max-width:900px;margin:auto}
+h1{font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.2;margin:0 0 8px}header p{margin:0;color:#d9e8f5}
+main{padding:18px 14px 48px}.notice{background:#fff7ed;border:1px solid #fed7aa;padding:12px 14px;border-radius:12px;margin:0 0 16px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tabs button,button{border:0;border-radius:9px;padding:10px 14px;cursor:pointer;font-weight:650;background:var(--accent);color:white}.tabs button{background:#e2e8f0;color:#334155}.tabs button.active{background:var(--accent);color:white}
+section{display:none}section.active{display:block}.card{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;margin:12px 0;box-shadow:0 2px 8px #0f172a08}
+.qtitle{font-weight:750;margin-bottom:8px}.choices{display:grid;gap:8px}.choices label{display:flex;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:9px;cursor:pointer}.choices label:has(input:checked){border-color:var(--accent);background:#eff6ff}
+textarea,input[type=text]{width:100%;border:1px solid #cbd5e1;border-radius:8px;padding:10px;font:inherit}textarea{min-height:95px;resize:vertical}
+.small{color:var(--muted);font-size:.92rem}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.secondary{background:#475569}#result{display:none;background:white;border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}.feedback{margin-top:8px;font-weight:650}.good{color:var(--good)}.bad{color:var(--bad)}
+details{margin-top:10px}summary{cursor:pointer;font-weight:650}.tag{display:inline-block;background:#e0f2fe;color:#075985;padding:3px 8px;border-radius:999px;font-size:.8rem;margin-bottom:8px}
+footer{color:var(--muted);font-size:.9rem;text-align:center;padding:22px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Kuiz Interaktif UASA Bahasa Melayu</h1>
+<p>Tingkatan 2 · Kertas 1 · Sesi 2024/2025</p>
+<p class="small" style="color:#d9e8f5;margin-top:8px">Jawab Bahagian A untuk semakan automatik. Bahagian B dan C menyediakan ruang jawapan untuk latihan bertulis.</p>
+</div></header>
+<main>
+<div class="notice"><strong>Nota guru:</strong> Kandungan dibina daripada set soalan yang diberikan. Beberapa item dalam dokumen asal mempunyai ejaan/format yang kurang jelas atau jawapan yang bergantung pada bahan visual/skema guru. Item tersebut ditandakan untuk semakan, bukan diteka secara automatik.</div>
+<div class="tabs">
+<button class="active" onclick="showTab('A',this)">Bahagian A · Objektif</button>
+<button onclick="showTab('B',this)">Bahagian B · Respons bertulis</button>
+<button onclick="showTab('C',this)">Bahagian C · Ringkasan</button>
+</div>
+<section id="A" class="active">
+<div class="card"><span class="tag">15 markah</span><h2>Bahagian A</h2><p>Pilih jawapan yang paling sesuai bagi setiap soalan. Markah automatik akan dikira untuk item yang mempunyai kunci jawapan yang boleh dikenal pasti.</p></div>
+<div id="objective"></div>
+<div class="actions"><button onclick="gradeA()">Semak jawapan Bahagian A</button><button class="secondary" onclick="resetA()">Padam jawapan</button></div>
+<div id="result"></div>
+</section>
+<section id="B">
+<div class="card"><span class="tag">30 markah</span><h2>Bahagian B</h2><p>Jawab semua soalan. Jawapan anda disimpan sementara dalam halaman ini sehingga halaman ditutup atau dimuat semula. Soalan respons bertulis tidak diberi markah automatik.</p></div>
+<div class="card"><div class="qtitle">1. Kesalahan ejaan dalam iklan Kem Jelajah Hutan</div><p>Kenal pasti tiga kesalahan ejaan dalam iklan asal dan tulis ejaan yang betul. Iklan menyebut aktiviti meredah hutan, mengenali flora dan fauna, serta ikhtiar hidup.</p><textarea placeholder="(i) Kesalahan → ejaan betul&#10;(ii) Kesalahan → ejaan betul&#10;(iii) Kesalahan → ejaan betul"></textarea><p class="small">Nota: teks hasil ekstrak dokumen menunjukkan “flura”; semak juga imej iklan asal untuk semua kesalahan ejaan.</p></div>
+<div class="card"><div class="qtitle">2(i). Kesalahan bahasa</div><p>Brosur itu memuatkan banyak maklumat-maklumat tentang masalah kemurungan.</p><textarea placeholder="Tulis pembetulan..."></textarea></div>
+<div class="card"><div class="qtitle">2(ii). Kesalahan bahasa</div><p>Abu mendapat ilham dari pemandangan itu.</p><textarea placeholder="Tulis pembetulan..."></textarea></div>
+<div class="card"><div class="qtitle">3. Jenis ayat</div><p>Kenal pasti sama ada setiap ayat ialah ayat tanya, ayat seruan, ayat penyata atau ayat perintah.</p>
+<p><strong>(i)</strong> Wah, besar sungguh Masjid Negara ini!</p><input type="text" placeholder="Jenis ayat (i)">
+<p><strong>(ii)</strong> Apakah cadangan kamu untuk meningkatkan minat membaca dalam kalangan remaja?</p><input type="text" placeholder="Jenis ayat (ii)">
+<p><strong>(iii)</strong> Jangan buang sampah merata-rata di kawasan sekolah.</p><input type="text" placeholder="Jenis ayat (iii)">
+<p><strong>(iv)</strong> Kain songket ialah busana yang lazimnya dipakai oleh pasangan pengantin.</p><input type="text" placeholder="Jenis ayat (iv)"></div>
+<div class="card"><div class="qtitle">4. Peribahasa berdasarkan bahan visual</div><p><strong>(i)</strong> Gambar sekumpulan orang melihat kawasan pergunungan dan petempatan dari tempat tinggi.</p><textarea placeholder="Tulis peribahasa yang sesuai..."></textarea><p class="small">Rujuk gambar asal pada halaman 9 dokumen untuk memastikan tafsiran tepat.</p>
+<p><strong>(ii)</strong> Gambar buah-buahan bersama gambar senyuman yang menampakkan gigi.</p><textarea placeholder="Tulis peribahasa yang sesuai..."></textarea></div>
+<div class="card"><div class="qtitle">5(i). Pemahaman Bahan 1</div><p>Siapakah yang meyakinkan mahkamah bahawa Bulat bin Leper tidak melakukan kecuaian?</p><textarea placeholder="Jawapan anda..."></textarea></div>
+<div class="card"><div class="qtitle">5(ii). Perbandingan Bahan 1 dan Bahan 2</div><p>Berdasarkan Bahan 1 dan Bahan 2, nyatakan persamaan antara hakim dengan Nabi Allah Sulaiman.</p><textarea placeholder="Jawapan anda..."></textarea></div>
+<div class="card"><div class="qtitle">5(iii). Soalan pendapat</div><p>Pada pendapat anda, apakah kesan penindasan dan fitnah terhadap masyarakat?</p><textarea placeholder="Berikan pendapat berserta huraian..."></textarea></div>
+<div class="card"><div class="qtitle">6. Novel Tingkatan 2</div><p>Pilih satu novel yang telah dikaji:</p><ul><li><em>Meniti Impian</em> — Osman Ayob</li><li><em>Darah Titik di Semantan</em> — Arman Sani</li><li><em>Jalan ke Puncak</em> — Juri Durabi</li><li><em>Jejak MONPUS</em> — Zulaiha Paikon</li></ul><p>Berdasarkan watak utama sebuah novel di atas, jelaskan tiga nilai dan pengajaran berserta contoh peristiwa yang sesuai. (10 markah)</p><textarea style="min-height:190px" placeholder="Novel pilihan dan jawapan anda..."></textarea></div>
+<div class="actions"><button class="secondary" onclick="window.print()">Cetak / simpan sebagai PDF</button></div>
+</section>
+<section id="C">
+<div class="card"><span class="tag">15 markah</span><h2>Bahagian C · Ringkasan</h2><p>Baca petikan dan tulis sebuah ringkasan tentang <strong>kesan positif penggunaan media sosial dalam kalangan masyarakat</strong> sepanjang <strong>80 hingga 100 patah perkataan</strong>. Gunakan ayat sendiri tanpa mengubah maksud asal.</p>
+<details><summary>Paparkan petikan asal</summary>
+<p>Penggunaan rangkaian media sosial seperti Facebook, Instagram, WhatsApp dan sebagainya telah menjadi medium paling berkuasa dalam sistem komunikasi hari ini. Peranan media sosial sangat berpengaruh dalam menyampaikan maklumat kepada seluruh masyarakat jika digunakan dengan platform yang betul.</p>
+<p>Antara kesan positif rangkaian media sosial ialah mampu melahirkan masyarakat yang prihatin. Pengguna media sosial dapat menyebarkan maklumat tentang sesuatu perkara yang berlaku dalam negara. Dengan cara ini, bantuan yang diperlukan mudah untuk disalurkan kepada pihak yang berkenaan.</p>
+<p>Selain itu, sikap muhibah antara anggota masyarakat yang berbilang kaum juga dapat disuburkan. Melalui media sosial, integrasi dan jalinan perpaduan antara kaum dapat ditingkatkan. Sebagai contoh, media berperanan menyebarkan iklan-iklan berunsurkan kemasyarakatan kepada umum agar masyarakat majmuk terus hidup harmoni.</p>
+<p>Selanjutnya, media sosial juga berperanan menyemarakkan kasih sayang dalam kalangan rakyat tanpa mengira perbezaan kaum, agama dan budaya. Media berkongsi informasi tentang anggota masyarakat yang ditimpa kesusahan, tidak bernasib baik, golongan miskin, warga emas yang memerlukan tindakan pantas bagi meringankan penderitaan golongan tersebut. Kutipan derma dapat dijalankan dengan segera.</p>
+<p>Kesimpulannya, rangkaian media sosial sangat berpotensi untuk menyuburkan integrasi kaum. Oleh hal yang demikian, pengguna media perlu melaksanakan tanggungjawab menjadi agen penyatuan masyarakat muhibah.</p>
+</details>
+<textarea id="summary" style="min-height:240px" placeholder="Tulis ringkasan anda di sini..."></textarea>
+<p><strong>Anggaran jumlah patah perkataan:</strong> <span id="count">0</span></p>
+<p class="small">Pengiraan ini berdasarkan perkataan yang dipisahkan oleh ruang. Semak semula ejaan, tatabahasa, isi penting dan had 80–100 patah perkataan.</p>
+<div class="actions"><button onclick="countWords()">Kira patah perkataan</button><button class="secondary" onclick="window.print()">Cetak / simpan sebagai PDF</button></div>
+</div>
+<div class="card"><h3>Senarai semak kendiri</h3><label><input type="checkbox"> Ringkasan menjawab fokus soalan.</label><br><label><input type="checkbox"> Isi ditulis semula dengan ayat sendiri.</label><br><label><input type="checkbox"> Panjang antara 80 hingga 100 patah perkataan.</label><br><label><input type="checkbox"> Ejaan dan tatabahasa telah disemak.</label></div>
+</section>
+<footer>Dibina sebagai bahan latihan berdasarkan fail UASA BM Kertas 1 Tingkatan 2 yang dimuat naik.</footer>
+</main>
+<script>
+const qs=[
+{n:1,q:"Malaysia berbangga dengan kualiti kereta nasional yang setanding kereta import ______ luar negara.",opts:["daripada","kepada","dari","ke"],key:0,exp:"Frasa yang sesuai dalam ayat ini ialah “daripada luar negara” untuk menunjukkan perbandingan/sumber."},
+{n:2,q:"Puan Zaharah menanam beberapa ______ serai dan pandan di belakang rumahnya untuk kegunaan sendiri.",opts:["kaki","rumpun","biji","tongkol"],key:1,exp:"“Rumpun” ialah penjodoh bilangan yang sesuai bagi serai dan pandan."},
+{n:3,q:"Pilih gabungan ayat yang menggunakan perkataan “segar” dengan betul.",opts:["I dan II","I, II dan III","II, III dan IV","III dan IV"],key:2,exp:"Pilihan C menggabungkan ayat II, III dan IV seperti dalam set soalan."},
+{n:4,q:"Pilih gabungan ayat yang menggunakan perkataan “kental” dengan betul.",opts:["I dan II","III dan IV","II, III dan IV","I, II, III dan IV"],key:1,exp:"“Kental” sesuai untuk adunan yang pekat dan semangat yang teguh; ayat III dan IV."},
+{n:5,q:"Pilih pembetulan yang paling tepat bagi ayat: “Kebanyakan murid-murid sukakan Cikgu Aminah kerana beliau serang guru yang prihatin.”",opts:["Kebanyakan murid-murid suka akan","Banyak murid sukakan","Kebanyakan murid suka akan","Kebanyakan murid-murid sukakan"],key:2,exp:"“Kebanyakan” tidak perlu diikuti kata nama berganda; bentuk yang sesuai ialah “kebanyakan murid suka akan”. Teks sumber turut mengandungi kemungkinan kesilapan imbasan “serang”."},
+{n:6,q:"Pilih pembetulan yang sesuai bagi frasa “berasaskan pada maklumat daripada orang ramai”.",opts:["berasas maklumat","berasaskan maklumat","berasaskan kepada maklumat","berasaskan pada maklumat"],key:1,exp:"Bentuk yang ringkas dan gramatis ialah “berasaskan maklumat”."},
+{n:7,q:"Ayat: “Semua murid-murid telah berada di dewan untuk meraikan sambutan hari guru yang disambut pada setiap 16 Mei.” Bahagian yang salah ialah …",opts:["Semua murid-murid","telah berada di dewan","hari guru","Tiada kesalahan"],key:0,exp:"Kata bilangan “semua” diikuti kata nama tunggal: “semua murid”."},
+{n:8,q:"Ayat: “Pulau Langkawi yang terkenal sebagai pulau lagenda merupakan destinasi pelancongan menarik yang menghidangkan panorama pantai indah nian.” Pilih bahagian yang mengandungi kesalahan bahasa.",opts:["pulau lagenda","destinasi pelancongan","indah nian","Tiada kesalahan"],key:0,exp:"Ejaan baku ialah “legenda”, bukan “lagenda”."},
+{n:9,q:"Pilih ayat yang paling hampir maksudnya dengan ayat tentang Program Rakan Muda sebagai pelantar memupuk perpaduan belia.",opts:["Pelantar untuk memupuk perpaduan dalam kalangan belia merupakan inisiatif Kementerian Belia dan Sukan.","Perpaduan belia dapat dipupuk melalui pelantar Kementerian Belia dan Sukan serta Program Rakan Muda.","Kementerian Belia dan Sukan melaksanakan Program Rakan Muda sebagai medium untuk memupuk perpaduan dalam kalangan belia.","Kementerian Belia dan Sukan perlu melaksanakan Program Rakan Muda untuk memupuk perpaduan belia."],key:2,exp:"Pilihan ini mengekalkan pelaksana, program dan tujuan asal."},
+{n:10,q:"Kata hikmat yang tidak sesuai dengan pernyataan tentang transformasi bidang kesihatan negara ialah …",opts:["Badan sihat otak cerdas","Pandu cermat jiwa selamat","Mencegah lebih baik daripada mengubati","Nikmat sihat lebih besar daripada nikmat harta"],key:1,exp:"“Pandu cermat jiwa selamat” berkaitan keselamatan jalan raya, bukan transformasi bidang kesihatan secara langsung."},
+{n:11,q:"Dalam rangkap pertama sajak “Kucari Damai di Sini”, di manakah penyajak mencari damai?",opts:["Di tanah airnya","Di negara orang","Di tanah seberang","Di dalam mimpi"],key:0,exp:"Sajak menyebut “di tanah subur makmur dan merdeka”, iaitu tanah air penyajak."},
+{n:12,q:"Apakah tema sajak “Kucari Damai di Sini”?",opts:["Tanggungjawab menjaga kebersihan alam sekitar","Sikap disiplin pada diri sendiri","Penghargaan terhadap kedamaian dan kesejahteraan negara","Hubungan cinta dan kasih sayang"],key:2,exp:"Sajak menonjolkan kedamaian, kemerdekaan dan kesejahteraan negara."},
+{n:13,q:"Berikut ialah cara mengekalkan perpaduan masyarakat majmuk di Malaysia, kecuali …",opts:["Saling menghormati antara kaum","Bertolak ansur","Meraikan perbezaan budaya, agama dan tradisi","Mencetuskan pergaduhan dan isu perkauman"],key:3,exp:"Mencetuskan pergaduhan dan isu perkauman merosakkan perpaduan."},
+{n:14,q:"Antara ciri sajak “Kucari Damai di Sini” ialah …",opts:["Tiga rangkap","Rima yang sama","Berbentuk terikat","Mempunyai pembayang dan maksud"],key:0,exp:"Sajak yang dipetik terdiri daripada tiga rangkap."},
+{n:15,q:"Pada rangkap terakhir sajak, penyajak berharap agar …",opts:["Negara kekal merdeka","Negara tidak lagi merdeka","Negara terus menjadi kebanggaan","Negara terus subur"],key:2,exp:"Rangkap terakhir menyebut negara menjadi catatan sejarah kebanggaan untuk generasi masa depan."}
+];
+const root=document.getElementById('objective');
+qs.forEach(x=>{let d=document.createElement('div');d.className='card';d.id='q'+x.n;d.innerHTML=`<div class="qtitle">${x.n}. ${x.q}</div><div class="choices">${x.opts.map((o,i)=>`<label><input type="radio" name="q${x.n}" value="${i}"> <span><strong>${"ABCD"[i]}.</strong> ${o}</span></label>`).join('')}</div><div class="feedback" id="f${x.n}"></div><details id="e${x.n}" style="display:none"><summary>Lihat penjelasan</summary><p>${x.exp}</p></details>`;root.appendChild(d)});
+function showTab(id,b){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');}
+function gradeA(){let correct=0,answered=0;qs.forEach(x=>{let s=document.querySelector(`input[name="q${x.n}"]:checked`),f=document.getElementById('f'+x.n),e=document.getElementById('e'+x.n);e.style.display='block';if(s){answered++;if(+s.value===x.key){correct++;f.className='feedback good';f.textContent='Jawapan tepat.'}else{f.className='feedback bad';f.textContent='Belum tepat. Semak penjelasan di bawah.'}}else{f.className='feedback bad';f.textContent='Belum dijawab.'}});let r=document.getElementById('result');r.style.display='block';r.innerHTML=`<h3>Keputusan Bahagian A</h3><p><strong>${correct} / ${qs.length}</strong> jawapan betul · ${answered} soalan dijawab.</p><p class="small">Skor ini berdasarkan kunci latihan yang disediakan. Guru disaran menyemak item 3, 5 dan 8 dengan naskhah/skema asal sebelum digunakan sebagai pentaksiran rasmi.</p>`;r.scrollIntoView({behavior:'smooth',block:'center'})}
+function resetA(){document.querySelectorAll('#A input[type=radio]').forEach(x=>x.checked=false);qs.forEach(x=>{document.getElementById('f'+x.n).textContent='';document.getElementById('e'+x.n).style.display='none'});document.getElementById('result').style.display='none'}
+function countWords(){let t=document.getElementById('summary').value.trim();let n=t?t.split(/\s+/).length:0;document.getElementById('count').textContent=n;let c=document.getElementById('count');c.style.color=n>=80&&n<=100?'#067647': '#b42318'}
+</script>
+</body></html>
